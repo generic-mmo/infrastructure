@@ -4,7 +4,7 @@ Repository with IaaC and deployment code
 # terraform
 Deployment to Azure cloud
 
-### Tips & tricks
+## Tips & tricks
 Some useful commands
 
 **Reformat all files**
@@ -15,6 +15,11 @@ terraform fmt -recursive
 **Authenticate**
 ```shell script
 az login
+```
+
+**Initialize**
+```shell script
+terraform init
 ```
 
 **Dry-run**
@@ -35,10 +40,15 @@ terraform destroy
 # local
 Local environment setup
 
-### Tips & tricks
+## Tips & tricks
 Some useful commands
 
 **Deploy**
 ```shell script
 docker-compose up
+```
+
+**Undeploy**
+```shell script
+docker-compose down
 ```
