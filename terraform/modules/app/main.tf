@@ -1,20 +1,5 @@
-resource "azurerm_app_service_plan" "app_plan" {
-  location            = var.location
-  name                = var.name
-  resource_group_name = var.resource_group_name
-  tags                = var.tags
-
-  kind     = "Linux"
-  reserved = true
-
-  sku {
-    size = "F1"
-    tier = "Free"
-  }
-}
-
 resource "azurerm_app_service" "app" {
-  app_service_plan_id = azurerm_app_service_plan.app_plan.id
+  app_service_plan_id = var.app_service_plan_id
   location            = var.location
   name                = var.name
   resource_group_name = var.resource_group_name

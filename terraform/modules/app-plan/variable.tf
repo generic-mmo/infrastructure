@@ -13,16 +13,3 @@ variable "resource_group_name" {
 variable "tags" {
   type = map(string)
 }
-
-variable "app_service_plan_id" {
-  type = string
-}
-
-variable "docker_image" {
-  type = string
-}
-
-variable "env_variables" {
-  type    = map(string)
-  default = {}
-}

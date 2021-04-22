@@ -1,14 +1,11 @@
 variable "location" {
-  type    = string
-  default = "westeurope"
+  type = string
 }
 
 variable "environment" {
-  type    = string
-  default = "production"
+  type = string
 }
 
 variable "project" {
-  type    = string
-  default = "generic-mmo"
+  type = string
 }
