@@ -1,0 +1,47 @@
+name: Terraform
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description:
+        default: terraform/environments/production
+        required: true
+      dry_run:
+        description: execute dry-run
+        default: true
+        required: true
+
+env:
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.15.0
+
+      - name: Apply dry-run
+        if: ${{ inputs.dry_run == true }}
+        run: |
+          cd INPUT_VARIABLE_ENVIRONMENT
+          terraform init
+          terraform plan
+
+#      - name: Apply
+#        if: ${{ inputs.dry_run == false }}
+#        run: |
+#          cd INPUT_VARIABLE_ENVIRONMENT
+#          terraform init
+#          terraform apply -auto-approve
