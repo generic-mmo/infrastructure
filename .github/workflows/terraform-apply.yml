@@ -35,13 +35,13 @@ jobs:
       - name: Apply dry-run
         if: ${{ github.event.inputs.dry_run }}
         run: |
-          cd INPUT_VARIABLE_ENVIRONMENT
+          cd ${{ github.event.inputs.environment }}
           terraform init
           terraform plan
 
 #      - name: Apply
 #        if: ${{ !github.event.inputs.dry_run }}
 #        run: |
-#          cd INPUT_VARIABLE_ENVIRONMENT
+#          cd ${{ github.event.inputs.environment }}
 #          terraform init
 #          terraform apply -auto-approve
