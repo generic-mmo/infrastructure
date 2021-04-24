@@ -1,4 +1,4 @@
-name: Terraform
+name: Terraform apply
 
 on:
   workflow_dispatch:
@@ -33,14 +33,14 @@ jobs:
           terraform_version: 0.15.0
 
       - name: Apply dry-run
-        if: ${{ inputs.dry_run == true }}
+        if: ${{ github.event.inputs.dry_run == true }}
         run: |
           cd INPUT_VARIABLE_ENVIRONMENT
           terraform init
           terraform plan
 
 #      - name: Apply
-#        if: ${{ inputs.dry_run == false }}
+#        if: ${{ github.event.inputs.dry_run == false }}
 #        run: |
 #          cd INPUT_VARIABLE_ENVIRONMENT
 #          terraform init
