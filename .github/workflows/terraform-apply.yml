@@ -32,21 +32,15 @@ jobs:
         with:
           terraform_version: 0.15.0
 
-      - name: test
-        run: |
-          echo ${{ github.event.inputs.dry_run }}
-          echo ${{ github.event.inputs.dry_run == true }}
-          echo ${{ github.event.inputs.dry_run == 1 }}
-
       - name: Apply dry-run
-        if: ${{ github.event.inputs.dry_run == true }}
+        if: ${{ github.event.inputs.dry_run }}
         run: |
           cd INPUT_VARIABLE_ENVIRONMENT
           terraform init
           terraform plan
 
 #      - name: Apply
-#        if: ${{ github.event.inputs.dry_run == false }}
+#        if: ${{ !github.event.inputs.dry_run }}
 #        run: |
 #          cd INPUT_VARIABLE_ENVIRONMENT
 #          terraform init
